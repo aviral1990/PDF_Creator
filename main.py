@@ -1,7 +1,12 @@
 import pandas
-from fpdf import FPDF
+from fpdf import FPDF                                                                                                                             
 
 def add_horizontal_lines(no_of_lines):
+    """
+    Draw horizontal lines in the pdf being created
+    :param no_of_lines:
+    :return: None
+    """
     for i in range(no_of_lines):
         pdf.ln(10)
         pdf.set_font(family="Times", style="B", size=20)
