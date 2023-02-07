@@ -1,6 +1,14 @@
 import pandas
 from fpdf import FPDF
 
+def add_horizontal_lines(no_of_lines):
+    for i in range(no_of_lines):
+        pdf.ln(10)
+        pdf.set_font(family="Times", style="B", size=20)
+        pdf.set_text_color(0, 0, 0)
+        pdf.cell(w=0, h=0, txt='', border=1, ln=1, align='L')
+
+
 FILENAME="topics.csv"
 
 df=pandas.read_csv(FILENAME)
@@ -19,16 +27,23 @@ for index,row in df.iterrows():
     pdf.cell(w=0, h=12, txt=row["Topic"], border=0, ln=1, align='L')
     pdf.cell(w=0, h=0, txt='', border=1, ln=1, align='L')
 
+    #Add Lines
+    add_horizontal_lines(25)
+
+
     #Add Footer
-    pdf.ln(264)
+    pdf.ln(15)
     pdf.set_font(family="Times", size=8)
     pdf.set_text_color(110, 110, 110)
     pdf.cell(w=0, h=1, txt=row["Topic"], border=0, align='R')
 
     while page < int(row["Pages"]):
         pdf.add_page()
+        #add lines
+        add_horizontal_lines(27)
+
         # Add Footer
-        pdf.ln(277)     #new Line
+        pdf.ln(7)     #new Line
         pdf.set_font(family="Times", size=8)
         pdf.set_text_color(110, 110, 110)
         pdf.cell(w=0, h=1, txt=row["Topic"], border=0, align='R')
